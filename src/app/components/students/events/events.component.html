@@ -1,0 +1,64 @@
+<app-loading *ngIf="showSpinner"></app-loading>
+
+<app-main-nav *ngIf="!showSpinner">
+  <body *ngIf="!showSpinner">
+    <div class="container">
+      <mat-tab-group [selectedIndex]="selected.value">
+        <mat-tab label="All Events">
+          <br>
+          <br>
+          <h4 *ngIf="this.interestlist.length==0" style="display: flex; justify-content: center;">We notice that you do not have any interests.<a style="text-decoration: none; background: #00000000;" [routerLink]="['/interests']" routerLinkActive="router-link-active" >Want to add some?</a></h4>
+          <div class="container">
+            <br>
+            <div class="row">
+              <mat-card class="example-card mat-elevation-z14" *ngFor="let evn of eventService.events">
+                <mat-card-header>
+                  <mat-card-title>{{ evn.evnName }}</mat-card-title>
+                  <mat-card-subtitle>{{ evn.evnDate1 }} to {{ evn.evnDate2 }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image class="img-responsive" src="https://backend-athena.herokuapp.com/{{ evn.Image }}"
+                  alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                  <p>
+                    {{ evn.evnDescription.substring(0,100) + "..." }}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <form #e="ngForm">
+                    <button class="rm" mat-raised-button (click)="sendDetails(e, evn._id)">READ MORE</button>
+                  </form>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+          <p class="text-center">Explore events outside your city also <a [routerLink]="['/eventsdeep']" routerLinkActive="router-link-active" >here</a></p>
+        </mat-tab>
+        <mat-tab label="Events Following">
+          <div class="container">
+            <br>
+            <div class="row">
+              <mat-card class="example-card mat-elevation-z14" *ngFor="let evn of results">
+                <mat-card-header>
+                  <mat-card-title>{{ evn.evnName }}</mat-card-title>
+                  <mat-card-subtitle>{{ evn.evnDate1 }} to {{ evn.evnDate2 }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image class="img-responsive" src="https://backend-athena.herokuapp.com/{{ evn.Image }}"
+                  alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                  <p>
+                    {{ evn.evnDescription.substring(0,100) + "..." }}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <form #e="ngForm">
+                    <button class="btn rm" (click)="sendDetails(e, evn._id)">READ MORE</button>
+                  </form>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </body>
+</app-main-nav>

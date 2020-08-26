@@ -1,0 +1,37 @@
+
+<app-main-nav>
+  <html style="background-color: #00000000;">
+  <div class="container" style="background-color: #00000000;">
+
+    <body>
+      <br />
+      <div class="container c2" style="">
+        <div class="card text card-124">
+          <a class="card-body-a card-126-a" (click)="changeTab()" [routerLink]="['/eventsorg']" >
+            <p class="card-title">You have found Hidden Text </p>
+            <p class="card-text-a card-123-text" >Manage Your Events<br /></p>
+          </a>
+        </div>
+        <div class="card text card-124">
+          <a class="card-body-b card-124-a" [routerLink]="['/eventsorg']" routerLinkActive="router-link-active" >
+            <p class="card-title">You have found Hidden Text </p>
+            <p class="card-text-a card-123-text"  >Add an Event <br />
+            </p>
+          </a>
+        </div>
+        <br />
+        <br />
+      </div>
+      <mat-card class="upcomingC" style="margin-top: 20%; box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94,104,121,.699);">
+        <mat-card-content>
+          <h2 class="upcoming" style="font-weight: 100;margin-bottom: 10%;">Your Upcoming Events</h2>
+          <div class="container" *ngFor="let evn of myEvents" style="margin-top:10%;">
+            <h4>{{evn.evnName}}</h4>
+            <h5>{{evn.evnDate1}}</h5>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </body>
+  </div>
+  </html>
+</app-main-nav>
